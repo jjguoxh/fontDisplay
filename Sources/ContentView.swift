@@ -5,23 +5,45 @@ struct ContentView: View {
     @State private var selectedFontName = "Helvetica"
     @State private var numberFontSize: CGFloat = 72
     @State private var unitFontSize: CGFloat = 36
+    @State private var value: Double = 56
+    @State private var opacity: Double = 1.0
+    @State private var scale: Double = 1.0
     @State private var systemFonts: [String] = []
     
     var body: some View {
-        VStack(spacing: 20) {
-            // Numerical display area
-            VStack(spacing: 8) {
-                Text("56")
-                    .font(.custom(selectedFontName, size: numberFontSize))
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
+        VStack {
+            HStack(spacing: 20) {
+                // First speedometer (inner ring with color)
+                InnerColoredSpeedometer(
+                    value: value,
+                    selectedFontName: selectedFontName,
+                    numberFontSize: numberFontSize,
+                    unitFontSize: unitFontSize,
+                    opacity: opacity,
+                    scale: scale
+                )
                 
-                Text("km/h")
-                    .font(.custom(selectedFontName, size: unitFontSize))
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
+                // Second speedometer (outer ring with color)
+                OuterColoredSpeedometer(
+                    value: value,
+                    selectedFontName: selectedFontName,
+                    numberFontSize: numberFontSize,
+                    unitFontSize: unitFontSize,
+                    opacity: opacity,
+                    scale: scale
+                )
+                
+                // Third speedometer (non-closed inner arc)
+                NonClosedInnerSpeedometer(
+                    value: value,
+                    selectedFontName: selectedFontName,
+                    numberFontSize: numberFontSize,
+                    unitFontSize: unitFontSize,
+                    opacity: opacity,
+                    scale: scale
+                )
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.vertical, 20)
             
             // Controls area
             VStack(spacing: 16) {
@@ -38,6 +60,33 @@ struct ContentView: View {
                     }
                     .pickerStyle(.menu)
                     .frame(maxWidth: 200)
+                }
+                
+                // Value slider
+                HStack {
+                    Text("数值: \(Int(value))")
+                        .font(.subheadline)
+                    
+                    Slider(value: $value, in: 0...120, step: 1)
+                        .frame(width: 200)
+                }
+                
+                // Opacity slider
+                HStack {
+                    Text("透明度: \(String(format: "%.1f", opacity))")
+                        .font(.subheadline)
+                    
+                    Slider(value: $opacity, in: 0.1...1.0, step: 0.1)
+                        .frame(width: 200)
+                }
+                
+                // Scale slider
+                HStack {
+                    Text("缩放比例: \(String(format: "%.1f", scale))")
+                        .font(.subheadline)
+                    
+                    Slider(value: $scale, in: 0.5...2.0, step: 0.1)
+                        .frame(width: 200)
                 }
                 
                 // Font size sliders
@@ -62,6 +111,8 @@ struct ContentView: View {
             .padding()
             .background(Color.gray.opacity(0.1))
             .cornerRadius(8)
+            
+            Spacer()
         }
         .padding()
         .frame(minWidth: 400, minHeight: 300)

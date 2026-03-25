@@ -94,6 +94,20 @@ struct ContentView: View {
              }
              .padding(.vertical, 10)
             
+            // Fourth row with the new rectangular bar speedometer
+            HStack(spacing: 20) {
+                // Eighth speedometer (rectangular bar HUD)
+                RectangularBarSpeedometer(
+                    value: value,
+                    selectedFontName: selectedFontName,
+                    numberFontSize: numberFontSize,
+                    unitFontSize: unitFontSize,
+                    opacity: opacity,
+                    scale: scale
+                )
+            }
+            .padding(.vertical, 10)
+            
             // Controls area
             VStack(spacing: 16) {
                 // Font selection

@@ -75,3 +75,4 @@ Package.resolved
 
 # Swift Package Manager cache
 .swiftpm/
+*.png

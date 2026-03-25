@@ -12,6 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            // First row with 3 speedometers
             HStack(spacing: 20) {
                 // First speedometer (inner ring with color)
                 InnerColoredSpeedometer(
@@ -43,7 +44,31 @@ struct ContentView: View {
                     scale: scale
                 )
             }
-            .padding(.vertical, 20)
+            .padding(.vertical, 10)
+            
+            // Second row with 2 new speedometers
+            HStack(spacing: 20) {
+                // Fourth speedometer (double gradient)
+                DoubleGradientSpeedometer(
+                    value: value,
+                    selectedFontName: selectedFontName,
+                    numberFontSize: numberFontSize,
+                    unitFontSize: unitFontSize,
+                    opacity: opacity,
+                    scale: scale
+                )
+                
+                // Fifth speedometer (segmented progress)
+                SegmentedProgressSpeedometer(
+                    value: value,
+                    selectedFontName: selectedFontName,
+                    numberFontSize: numberFontSize,
+                    unitFontSize: unitFontSize,
+                    opacity: opacity,
+                    scale: scale
+                )
+            }
+            .padding(.vertical, 10)
             
             // Controls area
             VStack(spacing: 16) {

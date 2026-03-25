@@ -1,0 +1,2 @@
+open ./.build/debug/FontDisplayApp
+

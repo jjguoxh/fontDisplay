@@ -2,19 +2,13 @@
 .build/
 *.xcodeproj/
 *.xcworkspace/
+xcuserdata/
 
-# Build generated
-build/
-DerivedData/
-
-# Swift Package Manager generated files
-Package.resolved
-.swiftpm/
-
-# Xcode
-*.xcbkptlist
-*.xcuserstate
-*.xcscmblueprint
+# Swift compilation artifacts
+*.swiftmodule
+*.swiftdoc
+*.o
+*.d
 
 # macOS
 .DS_Store
@@ -43,25 +37,41 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# VS Code
+# VSCode
 .vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 
-# User-specific files
-*.swp
-*.swo
-*~
+# Build products
+*.app
+*.dSYM
+
+# Swift Package Manager generated files
+Package.resolved
+
+# Local development files
+*.local
 
 # Logs
 *.log
 
-# Local development files
-run.sh
+# Temporary files
+*.tmp
+*.temp
 
-# Swift compilation artifacts
-*.swiftmodule
-*.swiftdoc
-*.dSYM
+# Backup files
+*.backup
+*.bak
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Personal IDE settings
+*.swp
+*.swo
+*~
+
+# Swift Package Manager cache
+.swiftpm/

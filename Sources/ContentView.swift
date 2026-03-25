@@ -51,11 +51,13 @@ struct ContentView: View {
                 HStack {
                     Text("字体:")
                         .font(.headline)
+                        .foregroundColor(.white)
                     
                     Picker("选择字体", selection: $selectedFontName) {
                         ForEach(systemFonts, id: \.self) { fontName in
                             Text(fontName)
                                 .font(.custom(fontName, size: 14))
+                                .foregroundColor(.white)
                         }
                     }
                     .pickerStyle(.menu)
@@ -66,6 +68,7 @@ struct ContentView: View {
                 HStack {
                     Text("数值: \(Int(value))")
                         .font(.subheadline)
+                        .foregroundColor(.white)
                     
                     Slider(value: $value, in: 0...120, step: 1)
                         .frame(width: 200)
@@ -75,6 +78,7 @@ struct ContentView: View {
                 HStack {
                     Text("透明度: \(String(format: "%.1f", opacity))")
                         .font(.subheadline)
+                        .foregroundColor(.white)
                     
                     Slider(value: $opacity, in: 0.1...1.0, step: 0.1)
                         .frame(width: 200)
@@ -84,6 +88,7 @@ struct ContentView: View {
                 HStack {
                     Text("缩放比例: \(String(format: "%.1f", scale))")
                         .font(.subheadline)
+                        .foregroundColor(.white)
                     
                     Slider(value: $scale, in: 0.5...2.0, step: 0.1)
                         .frame(width: 200)
@@ -94,6 +99,7 @@ struct ContentView: View {
                     HStack {
                         Text("数值字体大小: \(Int(numberFontSize))")
                             .font(.subheadline)
+                            .foregroundColor(.white)
                         
                         Slider(value: $numberFontSize, in: 24...120, step: 1)
                             .frame(width: 200)
@@ -102,6 +108,7 @@ struct ContentView: View {
                     HStack {
                         Text("单位字体大小: \(Int(unitFontSize))")
                             .font(.subheadline)
+                            .foregroundColor(.white)
                         
                         Slider(value: $unitFontSize, in: 12...60, step: 1)
                             .frame(width: 200)
@@ -116,6 +123,7 @@ struct ContentView: View {
         }
         .padding()
         .frame(minWidth: 400, minHeight: 300)
+        .background(Color.black)
         .onAppear {
             loadSystemFonts()
         }

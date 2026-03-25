@@ -44,6 +44,30 @@ extension SpeedometerBase {
         }
     }
     
+    // 创建渐变颜色基于值
+    func gradientForValue(_ value: Double) -> LinearGradient {
+        let startColor: Color
+        let endColor: Color
+        
+        switch value {
+        case 0...30:
+            startColor = .blue
+            endColor = .blue.opacity(0.5)
+        case 30...50:
+            startColor = .green
+            endColor = .yellow
+        default:
+            startColor = .orange
+            endColor = .red
+        }
+        
+        return LinearGradient(
+            gradient: Gradient(colors: [startColor, endColor]),
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+    }
+    
     // 计算圆弧比例
     func arcRatio(for value: Double, maxValue: Double = 120) -> Double {
         return min(max(value / maxValue, 0), 1)
@@ -54,7 +78,7 @@ extension SpeedometerBase {
         Text("\(Int(value))")
             .font(.custom(selectedFontName, size: numberFontSize))
             .fontWeight(.bold)
-            .foregroundColor(.primary)
+            .foregroundColor(.white)
     }
     
     // 单位显示文本
@@ -62,7 +86,7 @@ extension SpeedometerBase {
         Text("km/h")
             .font(.custom(selectedFontName, size: unitFontSize))
             .fontWeight(.medium)
-            .foregroundColor(.secondary)
+            .foregroundColor(.white)
     }
     
     // 数值和单位组合显示
@@ -91,7 +115,8 @@ extension SpeedometerBase {
         
         return Circle()
             .trim(from: trimFrom, to: arcTo)
-            .stroke(colorForValue(value), lineWidth: 4)
+            .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round))
+            .fill(gradientForValue(value))
             .frame(width: diameter, height: diameter)
             .rotationEffect(.degrees(rotation))
     }

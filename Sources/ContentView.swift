@@ -70,6 +70,30 @@ struct ContentView: View {
             }
             .padding(.vertical, 10)
             
+            // Third row with 2 new image-based speedometers
+             HStack(spacing: 20) {
+                 // Sixth speedometer (image-based circular dial)
+                 ImageBasedSpeedometer1(
+                     value: value,
+                     selectedFontName: selectedFontName,
+                     numberFontSize: numberFontSize,
+                     unitFontSize: unitFontSize,
+                     opacity: opacity,
+                     scale: scale
+                 )
+                 
+                 // Seventh speedometer (image-based square dial)
+                 ImageBasedSpeedometer2(
+                     value: value,
+                     selectedFontName: selectedFontName,
+                     numberFontSize: numberFontSize,
+                     unitFontSize: unitFontSize,
+                     opacity: opacity,
+                     scale: scale
+                 )
+             }
+             .padding(.vertical, 10)
+            
             // Controls area
             VStack(spacing: 16) {
                 // Font selection
